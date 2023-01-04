@@ -25,7 +25,17 @@ const config = {
     path: path.resolve(__dirname, './docs'),
     filename: '[name].bundle.js',
     publicPath: '/',
-    assetModuleFilename: 'src/assets/[name][ext]'
+    // assetModuleFilename: 'src/assets/[name][ext]',
+    assetModuleFilename: (pathData) => {
+      // console.log(pathData)
+      const filepath = path
+        .dirname(pathData.filename)
+        .split('/')
+        .slice(1)
+        .join('/')
+      return `./src/${filepath}/[name][ext]`
+    },
+    clean: true
   },
   devServer: {
     port: 8089,
@@ -48,13 +58,38 @@ const config = {
     rules: [
       // https://webpack.js.org/loaders/css-loader/
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.(scss)$/,
         use: [
-          'style-loader', // Creates `style` nodes from JS strings
-          'css-loader', // Translates CSS into CommonJS
-          'sass-loader' // Compiles Sass to CSS
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
+
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     'style-loader', // Creates `style` nodes from JS strings
+      //     'css-loader', // Translates CSS into CommonJS
+      //     'sass-loader' // Compiles Sass to CSS
+      //   ]
+      // },
       {
         test: /\.css$/,
         use: [
@@ -66,6 +101,10 @@ const config = {
       {
         test: /\.(png|svg|jpg|jpeg|gif|otf|cur|mp4)$/i,
         type: 'asset/resource'
+      },
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader'
       }
     ]
   },
