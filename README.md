@@ -1,4 +1,4 @@
-# Développeur d'application - JavaScript React - Projet 7 - Développez un algorithme de recherche en JavaScript
+# Développeur d'application - JavaScript React - Projet 7
 ## Développez un algorithme de recherche en JavaScript
 
 ### Scénario

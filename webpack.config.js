@@ -3,11 +3,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-const API_URLS = {
-  development: 'http://localhost:3000'
-}
+// const API_URLS = {
+//   development: 'http://localhost:3000'
+// }
 
-const API_URL = JSON.stringify(API_URLS[process.env.NODE_ENV]) // must stringify but I'm not sure why!
+// const API_URL = JSON.stringify(API_URLS[process.env.NODE_ENV]) // must stringify but I'm not sure why!
 
 const sharedHtmlWebpackConf = name => {
   const result = name === 'index' ? {} : { chunks: ['main'] }
@@ -50,7 +50,8 @@ const config = {
     // Define global variable from NODE_ENV for the app
     new webpack.DefinePlugin({
       DEBUG: process.env.NODE_ENV === 'development',
-      API_URL
+      // API_URL,
+      VERSION: JSON.stringify(require('./package.json').version)
     })
   ],
   module: {
