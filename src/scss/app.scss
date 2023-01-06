@@ -1,3 +1,6 @@
+body{
+    font-family: 'Lato', sans-serif;
+}
 header {
     margin-top: 50px;
     text-align: center;
@@ -99,8 +102,17 @@ header {
         width: 100%;
     }
 }
-
-
+.card-body{
+    height:186px;
+    overflow:hidden;
+}
+.fa-regular{
+    font-weight: 500;
+}
+.ingred-list, .description {
+    font-size: 12px;
+   
+}
 
 
 
