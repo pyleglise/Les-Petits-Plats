@@ -1,4 +1,4 @@
-const { getAllDatas, filterMainSearchBar } = require('../utils/api')
+const { getAllDatas, filterMainSearchBar, getAllSubProperies } = require('../utils/api')
 const { recipesContainer, searchField } = require('../utils/domLinker')
 const factoryRecipes = require('../factories/recipe')
 const { regExPattern } = require('../utils/regExPaterns')
@@ -13,6 +13,9 @@ const displayRecipes = async recipes => {
 
 const init = async () => {
   const recipes = await getAllDatas()
+  console.log(getAllSubProperies(recipes, 'appliance'))
+  console.log(getAllSubProperies(recipes, 'ustensils'))
+  console.log(getAllSubProperies(recipes, 'ingredients', 'ingredient'))
   displayRecipes(recipes)
   searchField.addEventListener('input', function () {
     // searchText(domLinker.searchField, recipes)
