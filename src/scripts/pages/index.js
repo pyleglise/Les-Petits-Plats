@@ -15,10 +15,10 @@ const searchText = (searchField, recipes) => {
   if ((searchField.value !== '') && regExPattern.test(searchField.value)) {
     console.log(searchField.value)
 
-    console.log(Object.values(recipes[0]))
+    console.log(recipes)
     const search = searchField.value
     const res = recipes.filter(recipe => {
-      Object.values(recipe).some(val => {
+      recipe.some(val => {
         val.includes(search)
       })
     })
