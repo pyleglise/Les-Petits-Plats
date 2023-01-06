@@ -1,39 +1,24 @@
-const { getAllDatas } = require('../utils/api')
-const domLinker = require('../utils/domLinker')
+const { getAllDatas, filterMainSearchBar } = require('../utils/api')
+const { recipesContainer, searchField } = require('../utils/domLinker')
 const factoryRecipes = require('../factories/recipe')
 const { regExPattern } = require('../utils/regExPaterns')
 
 const displayRecipes = async recipes => {
   // console.log(recipes)
-  recipes.forEach((recipe) => {
-    const recipesModel = factoryRecipes.createRecipeCard(recipe)
-    const recipeCardDOM = recipesModel.getRecipeCardDOM()
-    domLinker.recipesContainer.appendChild(recipeCardDOM)
-  })
-}
-const searchText = (searchField, recipes) => {
-  if ((searchField.value !== '') && regExPattern.test(searchField.value)) {
-    console.log(searchField.value)
-
-    console.log(recipes)
-    const search = searchField.value
-    const res = recipes.filter(recipe => {
-      recipe.some(val => {
-        val.includes(search)
-      })
-    })
-    // const getMediasByPhotographerId = id => getMedias().then(medias => medias.filter(media => media.photographerId === id))
-    // array.filter(o =>Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
-    console.log(res)
+  if (recipesContainer.innerHTML !== '') {
+    recipesContainer.innerHTML = ''
   }
+  recipes.forEach((recipe) => recipesContainer.appendChild(factoryRecipes.createRecipeCard(recipe).getRecipeCardDOM()))
 }
+
 const init = async () => {
   const recipes = await getAllDatas()
-  // console.log(recipes)
   displayRecipes(recipes)
-
-  domLinker.searchField.addEventListener('input', function () {
-    searchText(domLinker.searchField, recipes)
+  searchField.addEventListener('input', function () {
+    // searchText(domLinker.searchField, recipes)
+    if ((this.value !== '') && regExPattern.test(this.value)) {
+      displayRecipes(filterMainSearchBar(recipes, this.value))
+    }
   })
 }
 
