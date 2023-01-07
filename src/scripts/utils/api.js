@@ -16,18 +16,19 @@ const getAllDatas = () => axios.get(bddFile, { axiosHeader }).then(res => res.da
 
 /**
  * Get all sub properties translated to Capital First Letter (function capitalizeFirstLetter) and removing duplicates
+ * Sorted alphabetically
  * @param {Array} array - Array of object (recipes)
  * @param {String} property1 - first property to list
  * @param {String} property2 - sub property (of the first property) to list. If empty, only the first property is listed
  * @returns Array of database objects
  */
-const getAllSubProperies = (array, property1, property2) => {
+const getAllSubProperties = (array, property1, property2) => {
   let flatArray = array.map(obj => obj[property1]).flat(1)
   if (property2) {
     flatArray = flatArray.map(obj => obj[property2])
   }
   flatArray = flatArray.map(obj => obj.toLowerCase()).map(obj => (obj = capitalizeFirstLetter(obj)))
-  const filteredProperty = flatArray.filter((element, index) => flatArray.indexOf(element) === index)
+  const filteredProperty = flatArray.filter((element, index) => flatArray.indexOf(element) === index).sort((a, b) => a.localeCompare(b))
   return filteredProperty
 }
 
@@ -68,4 +69,12 @@ const filterMainSearchBar = (recipes, value) => recipes.filter(item =>
   isLowerCaseIncluded(item.name, value) ||
   isFound(item.ingredients, 'ingredient', value))
 
-module.exports = { getAllDatas, isLowerCaseIncluded, isFound, filterMainSearchBar, getAllSubProperies }
+/**
+ * returns the array of the item satisfying the value research
+ * @param {Array} array - Array of items
+ * @param {String} value - String to search
+ * @returns Array filtered
+ */
+const filterArray = (array, value) => array.filter(item => isLowerCaseIncluded(item, value))
+
+module.exports = { getAllDatas, isLowerCaseIncluded, isFound, filterMainSearchBar, getAllSubProperties, filterArray }

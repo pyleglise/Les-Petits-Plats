@@ -73,22 +73,51 @@ header {
     }
 
     .accordion {
-        max-width: 170px;
+        max-width:min-content;
+        .accordion-body{
+            padding:0;
+           
+        }
+        
 
-        .accordion-button-ingredients {
+        .accordion-button-ingredients,#collapse-ingredients > div > ul {
             color: white;
             background: #3282F7;
+            
+           
         }
 
-        .accordion-button-appareils {
+        .accordion-button-appareils,  #collapse-appliances > div > ul   {
             color: white;
             background: #68D9A4;
         }
 
-        .accordion-button-ustensibles {
+        .accordion-button-ustensibles,  #collapse-ustensibles > div > ul  {
             color: white;
             background: #ED6454;
         }
+
+        .collapse.show{
+            width:700px;
+            color: inherit;
+            background: inherit;
+            padding:0;
+            .list-group{
+                display: flex;
+                flex-direction: row;
+                justify-content:space-between;
+                flex-wrap: wrap;
+               
+                li{
+                    width:33%;
+                    border:0;
+                    border-radius: 0;
+                    color:inherit;
+                    background-color: inherit;
+                }
+            }
+        }
+        
         
     }
 
