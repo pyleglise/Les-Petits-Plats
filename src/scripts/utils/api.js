@@ -7,6 +7,7 @@ const { axiosHeader } = {
   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
   mode: 'cors'
 }
+const { tags } = require('./states')
 
 /**
  * Get all recipes
@@ -28,7 +29,10 @@ const getAllSubProperties = (array, property1, property2) => {
     flatArray = flatArray.map(obj => obj[property2])
   }
   flatArray = flatArray.map(obj => obj.toLowerCase()).map(obj => (obj = capitalizeFirstLetter(obj)))
-  const filteredProperty = flatArray.filter((element, index) => flatArray.indexOf(element) === index).sort((a, b) => a.localeCompare(b))
+  let filteredProperty = flatArray.filter((element, index) => flatArray.indexOf(element) === index).sort((a, b) => a.localeCompare(b))
+  // console.log(tags)
+  if (tags[property1]) { filteredProperty = filteredProperty.filter(item => !tags[property1].includes(item)) }
+  // console.log(filteredProperty)
   return filteredProperty
 }
 
@@ -70,6 +74,45 @@ const filterMainSearchBar = (recipes, value) => recipes.filter(item =>
   isFound(item.ingredients, 'ingredient', value))
 
 /**
+ * returns the array of the objects satisfying the value filter ingerients and appliance and ustensil
+ * @param {Array} array - Array of object (recipes)
+ * @param {String} value - String to search
+ * @returns Object || undefined
+ */
+const filterAdvancedFilter = (recipes, ingredient, ustensil, appliance) => recipes.filter(item =>
+  isLowerCaseIncluded(item.appliance, appliance) &&
+  item.ustensils.find(element => isLowerCaseIncluded(element, ustensil)) &&
+  isFound(item.ingredients, 'ingredient', ingredient))
+
+/**
+ * returns the array of the objects satisfying the value research in propertiy : ingredients
+ * @param {Array} recipes - Array of object (recipes)
+ * @param {String} value - String to search
+  * @returns Object || undefined
+ */
+const filterIngredientSearch = (recipes, value) => recipes.filter(item =>
+  isFound(item.ingredients, 'ingredient', value))
+
+/**
+ * returns the array of the objects satisfying the value research in propertiy : appliance
+ * @param {Array} recipes - Array of object (recipes)
+ * @param {String} value - String to search
+  * @returns Object || undefined
+ */
+const filterApplianceSearch = (recipes, value) => recipes.filter(item =>
+  isLowerCaseIncluded(item.appliance, value))
+
+/**
+ * returns the array of the objects satisfying the value research in propertiy : ustensils
+ * @param {Array} recipes - Array of object (recipes)
+ * @param {String} value - String to search
+  * @returns Object || undefined
+ */
+// const found = array1.find(element => element > 10);
+const filterUstensibleSearch = (recipes, value) => recipes.filter(item =>
+  item.ustensils.find(element => isLowerCaseIncluded(element, value)))
+
+/**
  * returns the array of the item satisfying the value research
  * @param {Array} array - Array of items
  * @param {String} value - String to search
@@ -77,4 +120,15 @@ const filterMainSearchBar = (recipes, value) => recipes.filter(item =>
  */
 const filterArray = (array, value) => array.filter(item => isLowerCaseIncluded(item, value))
 
-module.exports = { getAllDatas, isLowerCaseIncluded, isFound, filterMainSearchBar, getAllSubProperties, filterArray }
+module.exports = {
+  getAllDatas,
+  isLowerCaseIncluded,
+  isFound,
+  filterMainSearchBar,
+  getAllSubProperties,
+  filterArray,
+  filterIngredientSearch,
+  filterApplianceSearch,
+  filterUstensibleSearch,
+  filterAdvancedFilter
+}
