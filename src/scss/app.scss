@@ -1,6 +1,15 @@
 body{
     font-family: 'Lato', sans-serif;
 }
+
+/* clears the ‘X’ from Internet Explorer */
+// input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+// input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }/* clears the ‘X’ from Chrome */
+// input[type="search"]::-webkit-search-decoration,
+// input[type="search"]::-webkit-search-cancel-button,
+// input[type="search"]::-webkit-search-results-button,
+// input[type="search"]::-webkit-search-results-decoration { display: none; }
+
 header {
     margin-top: 50px;
     text-align: center;
@@ -51,44 +60,148 @@ header {
 
 #section-filtres {
     margin-bottom: 20px;
+    
 
     .badges {
         margin-bottom: 20px;
+        justify-content: stretch;
+        flex-wrap: wrap;
 
         button {
+            border:0;
             border-radius: 5px;
             font-family: 'Lato';
             font-style: normal;
             font-weight: 700;
             font-size: 14px;
             line-height: 17px;
-            background: #3282F7;
+            // background: #3282F7;
+            margin-right:5px;
+            margin-bottom:10px;
+            &.bg-color-ingredients{
+                background: #3282F7;
+            }
+            &.bg-color-appliance{
+                background: #68D9A4;
+            }
+            &.bg-color-ustensils{
+                background: #ED6454;
+            }
+            
         }
 
-        i {
-            padding-left: 10px;
-            padding-right: 10px;
-            font-size: 16px;
-        }
+        // i {
+        //     padding-left: 10px;
+        //     font-size: 16px;
+        // }
     }
 
     .accordion {
-        max-width: 170px;
-
-        .accordion-button-ingredients {
-            color: white;
-            background: #3282F7;
+        max-width:min-content;
+        .accordion-body{
+            padding:0;
+           
+        }
+        h2{
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-right:20px;
+            i{
+                font-size: 16px;
+                cursor:pointer;
+            }
+            
+        }
+        input{
+            display:none;
+            // line-height:40px;
+            width:466px;
+            background: inherit;
+            border: 0;
+            font-size: 16px;
+            box-shadow: none;
+            
+            &::placeholder{
+                color : white;
+                border:0;
+                
+            }
+            &:not(:placeholder-shown), &:focus{
+                color : white;
+                border:0;
+                
+                box-shadow: none;
+                
+            }
+            
+        }   
+        
+        .accordion-button{
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+        
+        .accordion-button:not(.collapsed)::after{
+            // content:'';
+            background-image: none;
+            
+        }
+        .accordion-button.collapsed::after {
+            // content:'';
+            background-image: none;
         }
 
-        .accordion-button-appareils {
+        
+        
+        .accordion-button-ingredients,
+        #heading-ingredients,
+        #collapse-ingredients > div > ul {
+            color: white;
+            background: #3282F7;
+            
+           
+        }
+
+        .accordion-button-appareils,  
+        #heading-appliances, 
+        #collapse-appliance > div > ul   {
             color: white;
             background: #68D9A4;
         }
 
-        .accordion-button-ustensibles {
+        .accordion-button-ustensibles, 
+        #heading-ustensibles, 
+        #collapse-ustensils > div > ul  {
             color: white;
             background: #ED6454;
         }
+
+        .collapse.show{
+            width:500px;
+            color: inherit;
+            background: inherit;
+            padding:0;
+            .list-group{
+                display: flex;
+                flex-direction: row;
+                justify-content:space-between;
+                flex-wrap: wrap;
+               
+                li{
+                    cursor: pointer;
+                    width:33%;
+                    border:0;
+                    border-radius: 0;
+                    color:inherit;
+                    background-color: inherit;
+                    &:hover{
+                        filter: brightness(105%);
+                    }
+                }
+            }
+        }
+        
         
     }
 
