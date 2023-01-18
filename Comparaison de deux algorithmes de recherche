@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-18T20:22:49.475Z" agent="5.0 (Windows)" etag="q9S-8vlCXFN220kWVKJn" version="20.8.5" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-18T20:35:53.988Z" agent="5.0 (Windows)" etag="EtbqhFOIzLvq2_CyVCk2" version="20.8.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1050" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -74,7 +74,7 @@
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-10" value="Terme trouvé dans la description ?" style="rhombus;whiteSpace=wrap;html=1;shadow=0;fontFamily=Helvetica;fontSize=12;align=center;strokeWidth=1;spacing=6;spacingTop=-4;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="327.5" y="270" width="115" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="WIyWlLk6GJQsqaUBKTNV-12" value="La liste est retournée au programme principale pour affichage" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-12" value="La liste est retournée au programme principal pour affichage" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="297.5" y="620" width="175" height="70" as="geometry" />
         </mxCell>
         <mxCell id="CZLxeLzv6YiEzHs_pC9h-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="CZLxeLzv6YiEzHs_pC9h-3" target="WIyWlLk6GJQsqaUBKTNV-6">
