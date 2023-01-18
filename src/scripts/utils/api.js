@@ -50,7 +50,7 @@ const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + strin
    * @param {String} value2
    * @returns Boolean
    */
-const isLowerCaseIncluded = (value1, value2) => value1.toLowerCase().includes(value2.toLowerCase())
+const isLowerCaseIncluded = (value1, value2) => value1.toString().toLowerCase().includes(value2.toString().toLowerCase())
 
 /**
  * returns the first element in the provided array that satisfies the provided testing function (isIncluded function).
@@ -72,17 +72,6 @@ const filterMainSearchBar = (recipes, value) => recipes.filter(item =>
   isLowerCaseIncluded(item.description, value) ||
   isLowerCaseIncluded(item.name, value) ||
   isFound(item.ingredients, 'ingredient', value))
-
-/**
- * returns the array of the objects satisfying the value filter ingerients and appliance and ustensil
- * @param {Array} array - Array of object (recipes)
- * @param {String} value - String to search
- * @returns Object || undefined
- */
-const filterAdvancedFilter = (recipes, ingredient, ustensil, appliance) => recipes.filter(item =>
-  isLowerCaseIncluded(item.appliance, appliance) &&
-  item.ustensils.find(element => isLowerCaseIncluded(element, ustensil)) &&
-  isFound(item.ingredients, 'ingredient', ingredient))
 
 /**
  * returns the array of the objects satisfying the value research in propertiy : ingredients
@@ -129,6 +118,5 @@ module.exports = {
   filterArray,
   filterIngredientSearch,
   filterApplianceSearch,
-  filterUstensibleSearch,
-  filterAdvancedFilter
+  filterUstensibleSearch
 }

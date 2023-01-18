@@ -1,11 +1,11 @@
 const bootstrap = require('bootstrap')
 const {
   getAllDatas, filterMainSearchBar, getAllSubProperties, filterArray, filterIngredientSearch, filterApplianceSearch,
-  filterUstensibleSearch, filterAdvancedFilter
+  filterUstensibleSearch
 } = require('../utils/api')
 const {
-  recipesContainer, searchField, ingredientMenu, applianceMenu, ustensilsMenu,
-  divIngredientMenu, divApplianceMenu, divUstensilsMenu,
+  sectionFiltres, sectionRecipes, recipesContainer, searchField, ingredientMenu, applianceMenu, ustensilsMenu,
+  divIngredientMenu, divApplianceMenu, divUstensilsMenu, afterSearchBar,
   ingredientsFilterBtn, appliancesFilterBtn, ustensiblesFilterBtn,
   ingredientsFilterInput, appliancesFilterInput, ustensiblesFilterInput,
   ingredientsFilterBtnArrow, appliancesFilterBtnArrow, ustensiblesFilterBtnArrow,
@@ -18,6 +18,7 @@ const { tags } = require('../utils/states')
 const divIngredientMenuCollapse = new bootstrap.Collapse(divIngredientMenu, { toggle: false })
 const divApplianceMenuCollapse = new bootstrap.Collapse(divApplianceMenu, { toggle: false })
 const divUstensilsMenuCollapse = new bootstrap.Collapse(divUstensilsMenu, { toggle: false })
+
 /**
  * Display, in the DOM recipesContainer the list of the recipes in the array recipes
  * @param {Array} recipes - array of object (recipes)
@@ -38,7 +39,7 @@ const displayItemsMenu = (parentMenu, menuItems, recipes) => {
   if (parentMenu.innerHTML !== '') parentMenu.innerHTML = ''
   menuItems.forEach((item) => {
     const itemDOM = createDOMElement('li', parentMenu, [{ class: 'list-group-item' }], item)
-    itemDOM.addEventListener('mousedown', () => addTag(parentMenu.parentNode.parentNode.getAttribute('id').split('collapse-').pop(), item, itemDOM, recipes))
+    itemDOM.addEventListener('click', () => addTag(parentMenu.parentNode.parentNode.getAttribute('id').split('collapse-').pop(), item, itemDOM, recipes))
   })
 }
 
@@ -46,11 +47,10 @@ const displayItemsMenu = (parentMenu, menuItems, recipes) => {
  * Add tag of the item selected in the dropdown and remove it from dropdown
  * @param {DOMObject} parent -  DOM object parent menu
  * @param {String} element - element to add as a tag
- * @param {DOMObject} itemDOM - DOM item selected, to remove from the dropdaoxn menu
+ * @param {DOMObject} itemDOM - DOM item selected, to remove from the dropdown menu
  * @returns null
  */
 const addTag = (parent, element, itemDOM, recipes) => {
-  // console.log('parent: ' + parent)
   if (!tags[parent].includes(element)) {
     tags[parent].push(element)
     itemDOM.style.display = 'none'
@@ -67,14 +67,19 @@ const addTag = (parent, element, itemDOM, recipes) => {
   filterWithTags(recipes)
 }
 
-const filterWithTags = (recipes) => {
+/**
+ * Filter the item recipes and menus depending on the tags selected
+ * @param {array} recipes -  all the recipes to be filtered
+ * @returns null
+ */
+const filterWithTags = async (recipes) => {
+  if (tags.ingredients.length === 0 && tags.ustensils.length === 0 && tags.appliance.length === 0) {
+    recipes = await getAllDatas()
+  }
   let filteredRecipes = recipes
-  console.log(tags)
-  // filteredRecipes = filterAdvancedFilter(recipes, tags.ingredients, tags.ustensils, tags.appliance)
   tags.ingredients.forEach((ingredient) => { filteredRecipes = filterIngredientSearch(filteredRecipes, ingredient) })
   tags.appliance.forEach((appliance) => { filteredRecipes = filterApplianceSearch(filteredRecipes, appliance) })
   tags.ustensils.forEach((ustensible) => { filteredRecipes = filterUstensibleSearch(filteredRecipes, ustensible) })
-  console.log(filteredRecipes)
   const ingredients = getAllSubProperties(filteredRecipes, 'ingredients', 'ingredient')
   const ustensils = getAllSubProperties(filteredRecipes, 'ustensils')
   const appliances = getAllSubProperties(filteredRecipes, 'appliance')
@@ -95,6 +100,9 @@ const filterWithTags = (recipes) => {
  * @returns null
  */
 const refreshResultElement = (recipes, ingredients, ustensils, appliances) => {
+  sectionFiltres.style.removeProperty('display')
+  sectionRecipes.style.removeProperty('display')
+  afterSearchBar.innerHTML = ''
   displayItemsMenu(ingredientMenu, ingredients, recipes)
   displayItemsMenu(ustensilsMenu, ustensils, recipes)
   displayItemsMenu(applianceMenu, appliances, recipes)
@@ -116,6 +124,11 @@ const toggleDropDownArrow = (filterBtnArrowDOM) => {
   }
   refreshDropDownArrow()
 }
+
+/**
+ * Refresh the drop down menus
+ * @returns null
+ */
 const refreshDropDownArrow = () => {
   [ingredientsFilterBtnArrow, appliancesFilterBtnArrow, ustensiblesFilterBtnArrow].forEach(filterBtnArrowDOM => {
     if (!filterBtnArrowDOM.classList.contains('collapsed')) {
@@ -136,6 +149,7 @@ const refreshDropDownArrow = () => {
  */
 const openDropDownMenu = (filterBtnArrowDOM, divMenuCollapse) => {
   if (filterBtnArrowDOM.classList.contains('collapsed')) {
+    // divMenuCollapse.classList.add('show')
     divMenuCollapse.toggle()
     refreshDropDownArrow()
   }
@@ -150,6 +164,7 @@ const openDropDownMenu = (filterBtnArrowDOM, divMenuCollapse) => {
 const closeDropDownMenu = (filterBtnArrowDOM, divMenuCollapse) => {
   if (!filterBtnArrowDOM.classList.contains('collapsed')) {
     divMenuCollapse.toggle()
+    // divMenuCollapse.classList.remove('show')
     refreshDropDownArrow()
   }
 }
@@ -174,7 +189,6 @@ const displaySearchBtn = (filterBtnDOM, filterInputDOM) => {
  * @returns null
  */
 const closeSearchBtn = (filterBtnDOM, filterInputDOM, eEsc, filterBtnArrowDOM, divMenuCollapse) => {
-  // console.log(filterInputDOM.value)
   if ((eEsc && (eEsc.key === 'Escape' || eEsc.key === 'Esc')) || (!filterInputDOM.value)) {
     filterBtnDOM.style.display = 'flex'
     filterInputDOM.style.display = 'none'
@@ -192,13 +206,17 @@ const closeSearchBtn = (filterBtnDOM, filterInputDOM, eEsc, filterBtnArrowDOM, d
  */
 const setEventListenners = (recipes, ingredients, ustensils, appliances) => {
   searchField.addEventListener('input', function () {
-    if ((this.value !== '') && regExPattern.test(this.value)) {
-      const filteredRecipes = filterMainSearchBar(recipes, this.value)
-      if (filteredRecipes.length > 0) {
-        refreshResultElement(filteredRecipes, filterArray(ingredients, this.value), filterArray(ustensils, this.value), filterArray(appliances, this.value))
-      } else {
-        recipesContainer.innerHTML = '<p>Aucune recette ne correspond à votre critère… <br>Vous pouvez chercher « tarte aux pommes », « poisson », etc.</p>'
-      }
+    if (this.value !== '') {
+      if (regExPattern.test(this.value)) {
+        const filteredRecipes = filterMainSearchBar(recipes, this.value)
+        if (filteredRecipes.length > 0) {
+          refreshResultElement(filteredRecipes, filterArray(ingredients, this.value), filterArray(ustensils, this.value), filterArray(appliances, this.value))
+        } else {
+          afterSearchBar.innerHTML = 'Aucune recette ne correspond à votre recherche...<br>Vous pouvez chercher « tarte aux pommes », « poisson », etc.'
+          sectionFiltres.style.display = 'none'
+          sectionRecipes.style.display = 'none'
+        }
+      } else afterSearchBar.innerHTML = 'Entrez au moins trois caractères'
     } else refreshResultElement(recipes, ingredients, ustensils, appliances)
   })
 
