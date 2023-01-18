@@ -22,9 +22,9 @@ const config = {
     main: path.resolve(__dirname, './src/app.js')
   },
   output: {
-    path: path.resolve(__dirname, './docs'),
+    path: path.resolve(__dirname, 'docs/'),
     filename: '[name].bundle.js',
-    publicPath: '/',
+    publicPath: '',
     // assetModuleFilename: 'src/assets/[name][ext]',
     assetModuleFilename: (pathData) => {
       // console.log(pathData)
@@ -36,6 +36,7 @@ const config = {
       return `./src/${filepath}/[name][ext]`
     },
     clean: true
+
   },
   devServer: {
     port: 8089,
@@ -46,7 +47,7 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin(sharedHtmlWebpackConf('index', 'Fisheye')),
+    new HtmlWebpackPlugin(sharedHtmlWebpackConf('index')),
     // Define global variable from NODE_ENV for the app
     new webpack.DefinePlugin({
       DEBUG: process.env.NODE_ENV === 'development',
@@ -55,8 +56,13 @@ const config = {
     })
   ],
   module: {
-    // https://github.com/jantimon/html-webpack-plugin/blob/main/examples/custom-template/template.html
     rules: [
+      {
+        test: /\.(html)$/i,
+        use: [{
+          loader: 'html-loader'
+        }]
+      },
       // https://webpack.js.org/loaders/css-loader/
       {
         test: /\.(scss)$/,
@@ -106,6 +112,13 @@ const config = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.json$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'src/data/[name][ext]'
+        }
       }
     ]
   },

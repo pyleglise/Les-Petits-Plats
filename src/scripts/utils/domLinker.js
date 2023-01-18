@@ -1,6 +1,10 @@
 module.exports = {
+  afterSearchBar: document.querySelector('.error-field'),
+  sectionFiltres: document.getElementById('section-filtres'),
+  sectionRecipes: document.getElementById('section-recettes'),
   recipesContainer: document.querySelector('.row.row-cols-1.row-cols-md-3.g-4'),
   searchField: document.querySelector('.form-control'),
+  searchBtn: document.querySelector('.bi-search'),
   divIngredientMenu: document.querySelector('#collapse-ingredients'),
   divApplianceMenu: document.querySelector('#collapse-appliance'),
   divUstensilsMenu: document.querySelector('#collapse-ustensils'),

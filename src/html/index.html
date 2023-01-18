@@ -12,15 +12,16 @@
   </head>
   <body>
     <header>
-      <img src="src/assets/images/logo.png">
+      <img src="../assets/images/logo.png">
       <h1>Les petits plats</h1>
     </header>
     <main class="container">
       <nav class="navbar container">
         <form class="d-flex form-search-bar">
           <input class="form-control input-search-bar" type="search" placeholder="Rechercher une recette" aria-label="Rechercher une recette">
-            <button type="button"><i class="bi-search icon-search"></i></button>            
+          <button type="button"><i class="bi-search icon-search"></i></button>            
         </form>
+        <span class="error-field"> </span>
       </nav>
       <section class="container" id="section-filtres">
         <div class="d-flex badges ">
@@ -54,10 +55,10 @@
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading-appliances">
                 <button class="accordion-button accordion-button-appareils collapsed" type="button" 
-                 aria-expanded="false" aria-controls="collapse-appliances">Appareils
+                 aria-expanded="false" aria-controls="collapse-appliance">Appareils
                 </button>
                 <input id="appliancesFilter"  class="filter-input accordion-button " 
-                 aria-expanded="false" aria-controls="collapse-appliances"  type="search" placeholder="Rechercher un appareil...">
+                 aria-expanded="false" aria-controls="collapse-appliance"  type="search" placeholder="Rechercher un appareil...">
                 <i class='fa-solid fa-angle-up collapsed' data-bs-target="#collapse-appliance" data-bs-parent="#accordion-parent" data-bs-toggle="collapse"></i>
               </h2>
               <div id="collapse-appliance" class="accordion-collapse collapse" aria-labelledby="heading-appliances" data-bs-parent="#accordion-parent">
