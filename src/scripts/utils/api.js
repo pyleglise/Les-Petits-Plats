@@ -60,7 +60,26 @@ const isLowerCaseIncluded = (value1, value2) => value1.toString().toLowerCase().
  * @param {String} value - String to search
  * @returns Object || undefined
  */
-const isFound = (array, property, value) => array.find(item => isLowerCaseIncluded(item[property], value))
+// const isFound = (array, property, value) => array.find(item => isLowerCaseIncluded(item[property], value))
+
+/**
+ * returns the first element in the provided array that satisfies the provided testing function (isIncluded function).
+ * If no values satisfy the testing function, undefined is returned.
+ * @param {Array} array - Array of object (recipes)
+ * @param {String} property - Object property by example: 'description' or 'name'
+ * @param {String} value - String to search
+ * @returns Object || undefined
+ */
+const isFound = (array, property, value) => {
+  let isfound = false
+  for (let i = 0; i < array.length; i++) {
+    if (isLowerCaseIncluded(array[i][property], value)) {
+      isfound = true
+      break
+    }
+  }
+  return isfound
+}
 
 /**
  * returns the array of the objects satisfying the value research in properties : name, description or ingredients
@@ -68,10 +87,27 @@ const isFound = (array, property, value) => array.find(item => isLowerCaseInclud
  * @param {String} value - String to search
  * @returns Object || undefined
  */
-const filterMainSearchBar = (recipes, value) => recipes.filter(item =>
-  isLowerCaseIncluded(item.description, value) ||
-  isLowerCaseIncluded(item.name, value) ||
-  isFound(item.ingredients, 'ingredient', value))
+// const filterMainSearchBar = (recipes, value) => recipes.filter(item =>
+//   isLowerCaseIncluded(item.description, value) ||
+//   isLowerCaseIncluded(item.name, value) ||
+//   isFound(item.ingredients, 'ingredient', value))
+
+/**
+ * Alternate algorithm
+ * returns the array of the objects satisfying the value research in properties : name, description or ingredients
+ * @param {Array} array - Array of object (recipes)
+ * @param {String} value - String to search
+ * @returns Object || undefined
+ */
+const filterMainSearchBar = (recipes, value) => {
+  const filteredRecipes = []
+  for (let i = 0; i < recipes.length; i++) {
+    if (isLowerCaseIncluded(recipes[i].description, value) ||
+    isLowerCaseIncluded(recipes[i].name, value) ||
+    isFound(recipes[i].ingredients, 'ingredient', value)) filteredRecipes.push(recipes[i])
+  }
+  return filteredRecipes
+}
 
 /**
  * returns the array of the objects satisfying the value research in propertiy : ingredients

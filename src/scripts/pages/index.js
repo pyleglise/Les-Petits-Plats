@@ -102,7 +102,9 @@ const filterWithTags = async (recipes) => {
 const refreshResultElement = (recipes, ingredients, ustensils, appliances) => {
   sectionFiltres.style.removeProperty('display')
   sectionRecipes.style.removeProperty('display')
-  afterSearchBar.innerHTML = ''
+  let plural = 's'
+  if (recipes.length === 1) plural = ''
+  afterSearchBar.innerHTML = recipes.length + ' recette' + plural + ' trouvée' + plural
   displayItemsMenu(ingredientMenu, ingredients, recipes)
   displayItemsMenu(ustensilsMenu, ustensils, recipes)
   displayItemsMenu(applianceMenu, appliances, recipes)
@@ -208,7 +210,9 @@ const setEventListenners = (recipes, ingredients, ustensils, appliances) => {
   searchField.addEventListener('input', function () {
     if (this.value !== '') {
       if (regExPattern.test(this.value)) {
+        console.time('Time it takes to run the function')
         const filteredRecipes = filterMainSearchBar(recipes, this.value)
+        console.timeEnd('Time it takes to run the function')
         if (filteredRecipes.length > 0) {
           refreshResultElement(filteredRecipes, filterArray(ingredients, this.value), filterArray(ustensils, this.value), filterArray(appliances, this.value))
         } else {
