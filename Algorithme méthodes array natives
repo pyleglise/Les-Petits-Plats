@@ -1,0 +1,84 @@
+<mxfile host="app.diagrams.net" modified="2023-01-18T20:33:44.233Z" agent="5.0 (Windows)" etag="-DfMVzxBSjzBfqUqcW2_" version="20.8.5" type="github">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1050" dy="530" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-0" target="GXzUNZ9AOfhNFL1quVcg-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-0" value="Début de la recherche de la chaine &quot;coco&quot;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="275" y="60" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-1" target="GXzUNZ9AOfhNFL1quVcg-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="220" />
+              <mxPoint x="250" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-8" value="OU" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="GXzUNZ9AOfhNFL1quVcg-5">
+          <mxGeometry x="0.4333" y="1" relative="1" as="geometry">
+            <mxPoint x="-1" y="45" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-1" target="GXzUNZ9AOfhNFL1quVcg-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="210" />
+              <mxPoint x="400" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-10" value="OU" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="GXzUNZ9AOfhNFL1quVcg-6">
+          <mxGeometry x="0.5833" y="-2" relative="1" as="geometry">
+            <mxPoint x="2" y="5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-1" target="GXzUNZ9AOfhNFL1quVcg-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="220" />
+              <mxPoint x="540" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-9" value="OU" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="GXzUNZ9AOfhNFL1quVcg-7">
+          <mxGeometry x="0.4857" relative="1" as="geometry">
+            <mxPoint y="47" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-1" value="Filter les recettes qui contiennent la chaine recherchée dans :" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="330" y="150" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-2" target="GXzUNZ9AOfhNFL1quVcg-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="420" />
+              <mxPoint x="400" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-2" value="Le nom" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="190" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-3" target="GXzUNZ9AOfhNFL1quVcg-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-3" value="La description" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="340" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="GXzUNZ9AOfhNFL1quVcg-4" target="GXzUNZ9AOfhNFL1quVcg-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-4" value="La liste des ingrédient contient la chaine recherchée" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="480" y="300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="GXzUNZ9AOfhNFL1quVcg-12" value="La liste filtrée est retournée au programme principal pour affichage" style="rounded=1;whiteSpace=wrap;html=1;fontSize=12;glass=0;strokeWidth=1;shadow=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="312.5" y="480" width="175" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
