@@ -75,6 +75,7 @@ const addTag = (parent, element, itemDOM, recipes) => {
 const filterWithTags = async (recipes) => {
   if (tags.ingredients.length === 0 && tags.ustensils.length === 0 && tags.appliance.length === 0) {
     recipes = await getAllDatas()
+    // recipes = filterMainSearchBar(recipes, searchField.value)
   }
   let filteredRecipes = recipes
   tags.ingredients.forEach((ingredient) => { filteredRecipes = filterIngredientSearch(filteredRecipes, ingredient) })

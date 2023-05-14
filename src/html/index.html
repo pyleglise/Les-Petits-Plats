@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <img src="../assets/images/logo.png">
+      <img src="../assets/images/logo.png" alt="logo">
       <h1>Les petits plats</h1>
     </header>
     <main class="container">
@@ -39,7 +39,7 @@
                 data-bs-target="#collapse-ingredients" aria-expanded="false" aria-controls="collapse-ingredients">Ingredients
                 </button>
                 <input id="ingredientsFilter"  class="filter-input accordion-button " 
-                 aria-expanded="false" aria-controls="collapse-ingredients"  type="search" placeholder="Rechercher un ingrédient...">
+                 aria-controls="collapse-ingredients"  type="search" placeholder="Rechercher un ingrédient...">
                 <i class='fa-solid fa-angle-up collapsed' data-bs-target="#collapse-ingredients" data-bs-parent="#accordion-parent" data-bs-toggle="collapse" ></i>
               </h2>
               <div id="collapse-ingredients" class="accordion-collapse collapse" aria-labelledby="heading-ingredients" data-bs-parent="#accordion-parent">
@@ -58,7 +58,7 @@
                  aria-expanded="false" aria-controls="collapse-appliance">Appareils
                 </button>
                 <input id="appliancesFilter"  class="filter-input accordion-button " 
-                 aria-expanded="false" aria-controls="collapse-appliance"  type="search" placeholder="Rechercher un appareil...">
+                 aria-controls="collapse-appliance"  type="search" placeholder="Rechercher un appareil...">
                 <i class='fa-solid fa-angle-up collapsed' data-bs-target="#collapse-appliance" data-bs-parent="#accordion-parent" data-bs-toggle="collapse"></i>
               </h2>
               <div id="collapse-appliance" class="accordion-collapse collapse" aria-labelledby="heading-appliances" data-bs-parent="#accordion-parent">
@@ -73,10 +73,10 @@
           <div class="accordion col" id="ustensibles">
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading-ustensibles">
-                <button class="accordion-button accordion-button-ustensibles collapsed" type="button" aria-expanded="false" aria-controls="collapseOne">Ustensiles
+                <button class="accordion-button accordion-button-ustensibles collapsed" type="button" aria-expanded="false" >Ustensiles
                 </button>
                 <input id="ustensiblesFilter"  class="filter-input accordion-button " 
-                 aria-expanded="false" aria-controls="collapse-ustensibles"  type="search" placeholder="Rechercher un ustensile...">
+                  type="search" placeholder="Rechercher un ustensile...">
                 <i class='fa-solid fa-angle-up collapsed' data-bs-target="#collapse-ustensils" data-bs-parent="#accordion-parent" data-bs-toggle="collapse"></i>
               </h2>
               <div id="collapse-ustensils" class="accordion-collapse collapse" aria-labelledby="heading-ustensibles" data-bs-parent="#accordion-parent">
@@ -90,11 +90,11 @@
           </div>
         </div>
       </section>
-      <section class="container" id="section-recettes">
+      <div class="container" id="section-recettes">
         <div class="row row-cols-1 row-cols-md-3 g-4">
          
         </div>
-      </section>
+      </div>
 
     </main>
     <footer>
